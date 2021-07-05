@@ -46,7 +46,7 @@ const Input = ({ getMovies }) => {
       ) : loading ? (
         <div className="d-flex flex-column align-items-center justify-content-center">
           <h2> &nbsp; Yükleniyor...</h2>
-          <div class="spinner-border" role="status"></div>
+          <div className="spinner-border" role="status"></div>
         </div>
       ) : null}
     </div>
