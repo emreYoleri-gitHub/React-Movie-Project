@@ -7,9 +7,10 @@ const Movies = ({ movies }) => {
   if (typeof movies != "undefined") {
     return (
       <div className="d-flex flex-wrap justify-content-between">
-        {movies.map((movie) => {
+        {movies.map((movie, index) => {
           return (
             <div
+              key={index}
               className="mb-1 me-1 p-4 mt-3"
               style={{
                 height: "25rem",
@@ -24,7 +25,12 @@ const Movies = ({ movies }) => {
                 ) : (
                   <h4>{movie.Title}</h4>
                 )}
-                <img src={movie.Poster} alt={movie.Title} height="250" />
+                <img
+                  src={movie.Poster}
+                  alt={movie.Title}
+                  height="250"
+                  width="200"
+                />
                 <Link to={`/${movie.imdbID}`}>
                   <button className="btn btn-danger mt-3 mb-3">İncele</button>
                 </Link>

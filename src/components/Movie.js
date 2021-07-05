@@ -1,33 +1,41 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
 
 const Movie = (props) => {
   const [movie, setMovie] = useState({});
   useEffect(() => {
     console.log(props);
     let movieID = props.match.url.slice(1);
-    let movie = props.movies.find((movie) => movie.imdbID === movieID);
+    let movie = JSON.parse(localStorage.getItem("movies")).find(
+      (movie) => movie.imdbID === movieID
+    );
     setMovie(movie);
     console.log(movie);
   }, [props]);
-  
-  return (
-    <div className="d-flex m-3">
-      <img src={movie.Poster} alt={movie.Title} height="350" className="rounded-3" />
-      <div className="ms-3">
+  if (typeof movie != "undefined") {
+    return (
+      <div
+        className="mx-auto text-center mt-2 rounded-3 p-3"
+        style={{
+          background: "#B7D7D8",
+          width: "20rem",
+          boxSizing: "content-box",
+        }}
+      >
+        <h1 className="mt-2 mb-3">{movie.Title}</h1>
+        <img
+          src={movie.Poster}
+          alt={movie.Title}
+          height="350"
+          className="rounded-3"
+        />
 
-      <h1>{movie.Title}</h1>
-      <p>Type : {movie.Type}</p>
-      <p>Year : {movie.Year}</p>
+        <p className="mt-2">Type : {movie.Type}</p>
+        <p className="mt-2">Year : {movie.Year}</p>
       </div>
-    
-    </div>
-  );
+    );
+  } else {
+    <h2>Aradığınız Film Değerine Ulaşamadık.</h2>;
+  }
 };
-const mapStateToProps = (state) => {
-  const { movies } = state;
-  return {
-    movies,
-  };
-};
-export default connect(mapStateToProps)(Movie);
+
+export default Movie;
