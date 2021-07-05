@@ -31,7 +31,7 @@ const Movies = ({ movies }) => {
                   height="250"
                   width="200"
                 />
-                <Link to={`/${movie.imdbID}`}>
+                <Link to={`/${movie.imdbID}`} target="_blank">
                   <button className="btn btn-danger mt-3 mb-3">İncele</button>
                 </Link>
               </div>
