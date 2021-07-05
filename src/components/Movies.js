@@ -1,8 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router";
 
-const Movies = ({ movies }) => {
+const Movies = ({ movies, history }) => {
+  const examineMovieCard = (id) => {
+    history.push(`/${id}`);
+  };
   if (movies.length > 0) {
     return (
       <div className="d-flex flex-wrap justify-content-between">
@@ -30,9 +33,13 @@ const Movies = ({ movies }) => {
                   height="250"
                   width="200"
                 />
-                <Link to={`/${movie.imdbID}`} target="_blank">
-                  <button className="btn btn-danger mt-3 mb-3">İncele</button>
-                </Link>
+
+                <button
+                  onClick={() => examineMovieCard(movie.imdbID)}
+                  className="btn btn-danger mt-3 mb-3"
+                >
+                  İncele
+                </button>
               </div>
             </div>
           );
@@ -53,4 +60,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Movies);
+export default withRouter(connect(mapStateToProps)(Movies));
