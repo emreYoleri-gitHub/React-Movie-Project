@@ -3,13 +3,11 @@ import React, { useState, useEffect } from "react";
 const Movie = (props) => {
   const [movie, setMovie] = useState({});
   useEffect(() => {
-    console.log(props);
     let movieID = props.match.url.slice(1);
     let movie = JSON.parse(localStorage.getItem("movies")).find(
       (movie) => movie.imdbID === movieID
     );
     setMovie(movie);
-    console.log(movie);
   }, [props]);
   if (typeof movie != "undefined") {
     return (
