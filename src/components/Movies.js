@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Movies = ({ movies }) => {
-  if (typeof movies != "undefined") {
+  if (movies.length > 0) {
     return (
       <div className="d-flex flex-wrap justify-content-between">
         {movies.map((movie, index) => {
